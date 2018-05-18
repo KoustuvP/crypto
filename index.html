@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery.js"></script>
+    <script src="angular1_2.js"></script>
+    <script src="route.js"></script>
+    <script src="animate.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="underscore.js"></script>
+    <script src="operation.js"></script>
+    <script src="appService.js"></script>
+    <script src="chart.js"></script>
+    <script src="homeCtrl.js"></script>
+    <script src="validation.js"></script>
+    <script src="outputCtrl.js"></script>
+    <script src="logoController.js"></script>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="font-awesome.css" />
+    <link rel="stylesheet" href="app.css"/>
+    <link rel="stylesheet" href="modal.css" />
+    <style>
+
+        .green{
+            background-color:lightgreen;
+        }
+
+
+    </style>
+</head>
+<body >
+<div ng-app="myApp" ng-controller="myCtrl" >
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/logo">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#/about">About</a></li>
+                    <li><a href="#/chart">Chart</a></li>
+                    <li><a href="#/contact">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid center row-content"  ng-view>
+    </div>
+    <footer class="container-fluid text-center" style="position:relative;bottom:0">
+        <i class="fa fa-copyright" style="float:left"><span color="white"></span> Copyright to Koustuv</i>
+    </footer>
+
+</div>
+</body>

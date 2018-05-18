@@ -1,0 +1,1 @@
+place the folders in your local server and open the project using loopback. You can use ide like webstorm to start the project and oprn the project using index file

@@ -1,0 +1,37 @@
+<div class="bg" style="background-color: lavender;height:inherit;background-image: url('cryptoblur.png')">
+<div>
+<div class="centered home" style="font-weight:bold" ng-hide="clicked">
+    <div style="padding:60px 0 10px">
+        <span  style="font-weight:bold;font-size:20px;color:pink">
+        Here you can compare the predicted values of two cryptocurrency. Fill the input fields and go for it
+        <i class="fa fa-line-chart" style="font-size:36px"></i>
+        </span>
+    </div>
+    <div class="" style="color:pink">
+        <form name="getDataForm" ng-submit="chartComparison()" novalidate>
+        <div class="row" style="padding:10px;margin:5px">
+        <span class="col-sm-3">1st Entry</span>
+        <span class="col-sm-6" style="display:inline-block"><input type="text" class="form-control" ng-model="firstCode" ng-disabled="modalShow"></span>
+        </div>
+        <div class="row" style="padding:10px;margin:5px">
+        <span class="col-sm-3">2nd Entry</span>
+        <span class="col-sm-6" style="display:inline-block"><input type="text" class="form-control" ng-model="secondCode" ng-disabled="modalShow"></span>
+        </div>
+        <div class="centered" style="left:12%">
+            <input type="submit"   class="btn btn-primary" ng-click="chartComparison()" value="Compare"/>
+
+        </div>
+            </form>
+    </div>
+
+        <validation-directive modal="modalShow"></validation-directive>
+
+
+</div>
+
+<div style="position:relative;width:150px;left:40%;top:150px" ng-hide="data2" ng-if="clicked">
+    <i class="fa fa-spinner fa-spin" style="font-size:48px; color:green"></i>
+</div>
+<div id="chartdiv" ng-if="clicked&&!modalShow"></div>
+</div>
+</div>

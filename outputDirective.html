@@ -1,0 +1,32 @@
+<div style="background-color: lightpink;margin-bottom:0">
+    <button type="button" class="btn btn-danger" ng-show="data" ng-click="goBack()">Back</button>
+    <span class="btn" style="float:right"><i class="fa fa-refresh" style="font-size:24px;color:green"  ng-click="init(currencyCode,'refresh')" ng-show="data"></i></span>
+    <span style="position:relative;left:45%;top:200px" ng-if="!data">
+    <i class="fa fa-spinner fa-spin" style="font-size:48px; color:green " ></i><br/>
+    loading...
+</span>
+    <div class="row" >
+        <div class="col-sm-6" >
+            <div ng-show="data">
+                <div class="row  row-header">
+                    <span class="col-sm-5 text-center header-element">Price</span>
+                    <span class="col-sm-5 text-center header-element">Predicted time</span>
+                </div>
+            </div>
+            <div  style="height:492px;overflow-x:hidden">
+                <div class="row result-body" ng-repeat="item in data track by $index" >
+                    <span class="col-sm-5 text-center result-element" ng-class="getClass($index)">{{item['Price']|currency:'Rs.'}}</span>
+                    <span class="col-sm-5 text-center result-element" ng-class="getClass($index)">{{item['TimeStamp']}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5" >
+            <!--<button ng-click="setChart()">chart</button>-->
+
+            <div id="chartdiv"  >
+                <!--ng-class="getChartClass()"-->
+            </div>
+            <div ng-show="data" class="centered" style="font-weight: bold;padding-top: 30px;">Showing result for {{coinName}}</div>
+        </div>
+    </div>
+</div>

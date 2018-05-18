@@ -1,0 +1,15 @@
+{
+    "coins":{
+        "btc":{"ticker":"btc","coinName":"Bit Coin"},
+        "42c":{"ticker":"42c","coinName":"42 Coin"},
+        "eth":{"ticker":"eth","coinName":" Ethereum  "},
+        "ltc":{"ticker":"ltc","coinName":"Lite Coin"},
+        "ada":{"ticker":"ada","coinName":"Cardano"},
+        "miota":{"ticker":"miota","coinName":"Iota"},
+        "bch":{"ticker":"bch","coinName":"Bit Coin Cash"},
+        "eos":{"ticker":"eos","coinName":"EOS"},
+        "xlm":{"ticker":"xlm","coinName":"Steller"},
+        "xrp":{"ticker":"xrp","coinName":"Ripple"}
+    }
+}
+

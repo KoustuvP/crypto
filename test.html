@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <style>
+        #chartdiv{
+        width:800px;
+            height:700px
+        }
+    </style>
+
+</head>
+<body>
+<div id="chartdiv"></div>
+<!-- Chart code -->
+<script>
+    var x=[
+        {TimeStamp: "2018-04-23T09:07:19.896196Z", Price: 5724.52997507, color: "#CECEEE"},
+        {TimeStamp: "2018-04-24T09:07:19.899273Z", Price: 5825.1362367, color: "#2B2BBB"},
+        {TimeStamp: "2018-04-25T09:07:19.902238Z", Price: 5913.17812741, color: "#2D2DDD"},
+        {TimeStamp: "2018-04-26T09:07:19.905174Z", Price: 5975.68760807, color: "#2804BB"},
+        {TimeStamp: "2018-04-27T09:07:19.908143Z", Price: 6052.33716082, color: "#DA6BAA"},
+        {TimeStamp: "2018-04-28T09:07:19.911109Z", Price: 6130.7228092, color: "#2C2CCC"},
+        {TimeStamp: "2018-04-29T09:07:19.914091Z", Price: 6210.80894329, color: "#2DABF9"},
+        {TimeStamp: "2018-04-30T09:07:19.917034Z", Price: 6276.24913466, color: "#656A9B"},
+        {TimeStamp: "2018-05-01T09:07:19.920011Z", Price: 6381.64037907, color: "#E5D3B8"},
+        {TimeStamp: "2018-05-02T09:07:19.923068Z", Price: 6473.2300727, color: "#6AED00"},
+        {TimeStamp: "2018-05-03T09:07:19.926144Z", Price: 6536.8274596, color: "#CECEEE"},
+        {TimeStamp: "2018-05-04T09:07:19.929140Z", Price: 6615.79425454, color: "#72420E"},
+        {TimeStamp: "2018-05-05T09:07:19.932152Z", Price: 6696.4560764, color: "#2804BB"},
+        {TimeStamp: "2018-05-06T09:07:19.935149Z", Price: 6778.65818854, color: "#CECEEE"},
+        {TimeStamp: "2018-05-07T09:07:19.938157Z", Price: 6844.44435504, color: "#DA6BAA"},
+        {TimeStamp: "2018-05-08T09:07:19.941149Z", Price: 6953.21179281, color: "#0A15D2"},
+        {TimeStamp: "2018-05-09T09:07:19.944161Z", Price: 7046.19693904, color: "#B3E840"},
+        {TimeStamp: "2018-05-10T09:07:19.947180Z", Price: 7107.88842204, color: "#DA6BAA"},
+        {TimeStamp: "2018-05-11T09:07:19.950186Z", Price: 7185.38028032, color: "#2B2BBB"},
+        {TimeStamp: "2018-05-12T09:07:19.953174Z", Price: 7263.70457734, color: "#2D2DDD"},
+        {TimeStamp: "2018-05-13T09:07:19.956190Z", Price: 7342.6427766, color: "#1BCB25"},
+        {TimeStamp: "2018-05-14T09:07:19.959252Z", Price: 7402.76236652, color: "#0A15D2"},
+        {TimeStamp: "2018-05-15T09:07:19.962335Z", Price: 7508.32853716, color: "#C98CED"},
+        {TimeStamp: "2018-05-16T09:07:19.965397Z", Price: 7595.85147266, color: "#2D9E5B"},
+        {TimeStamp: "2018-05-17T09:07:19.968397Z", Price: 7648.86256929, color: "#E6DBFD"},
+        {TimeStamp: "2018-05-18T09:07:19.971444Z", Price: 7718.3194549, color: "#11EDDB"},
+        {TimeStamp: "2018-05-19T09:07:19.974452Z", Price: 7788.31981257, color: "#0A15D2"},
+        {TimeStamp: "2018-05-20T09:07:19.977455Z", Price: 7858.90638878, color: "#F0DDC2"},
+        {TimeStamp: "2018-05-21T09:07:19.980469Z", Price: 7909.63168059, color: "#11EDDB"},
+        {TimeStamp: "2018-05-22T09:07:19.983513Z", Price: 8009.49657325, color: "#dd840B2"}]
+
+
+    var chart = AmCharts.makeChart("chartdiv", {
+        "type": "pie",
+        "theme": "light",
+        "marginRight": 70,
+        // "legend": {
+        //"generateFromData": true //custom property for the plugin
+        //},
+        "dataProvider": x,
+        "startDuration": 1,
+        "graphs": [{
+            "balloonText": "<b>[[category]]: [[value]]</b>",
+            "fillColorsField": "color",
+            "fillAlphas": 0.9,
+            "lineAlpha": 0.2,
+            "type": "column",
+            "valueField": "Price"
+        }],
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "TimeStamp",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "labelRotation": 45
+        },
+        "valueField": "Price",
+        "titleField": "TimeStamp",
+        "export": {
+            "enabled": true
+        }
+
+    });
+</script>
+
+<!-- HTML -->
+
+</body>
+</html>

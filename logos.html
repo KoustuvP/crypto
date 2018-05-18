@@ -1,0 +1,15 @@
+<button type="button" class="btn btn-danger" ng-if="drillDown&&data" ng-click="goBack()">Back</button>
+<span style="position:relative;left:45%;top:200px" ng-if="!data&&drillDown">
+    <i class="fa fa-spinner fa-spin" style="font-size:48px; color:green " ></i><br/>
+    loading...
+</span>
+<div style="height:530px;overflow-y:auto" ng-hide="drillDown">
+    <span  class="np btn " ng-repeat="coin in x" ng-click="getResult(coin.ticker)"  ng-class="getColorForLogo($index)" style="font-weight:bold">
+        Name: {{coin.coinName}}<br/>Coin Code: {{coin.ticker}}
+    </span>
+
+</div>
+<div id="chartdiv" ng-if="drillDown" >
+
+</div>
+<div ng-show="data && drillDown" class="centered" style="font-weight: bold;padding-top: 30px;">Showing result for {{coinName}}</div>

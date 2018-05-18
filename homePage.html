@@ -1,0 +1,60 @@
+<div class="bg" style="background-image: url('btCpy.jpg')">
+<div class="row home-page-logo ">
+    <div style="float:right">
+        <img ng-src="myLogo.png" style="height:40px;padding-right:15px" />
+    </div>
+    <div class="col-sm-1 icon-div">
+        <div id="btnDiv" class="btn-group-vertical" ng-mouseover="hoveringEffect(true)" ng-mouseleave="hoveringEffect(false)">
+            <a class="anc" href="http://facebook.com/koustuv.mukherjee1" style="background-color:royalblue">
+                <i class="fa fa-facebook" style="font-size:48px;color:white;padding-left:10px"></i>
+            </a>
+            <a  class=" anc" href="https://twitter.com/koustuvmukherje" style="background-color:skyblue">
+                <i class="fa fa-twitter" style="font-size:48px;color:white"></i>
+            </a>
+            <a  class="anc" href="https://www.linkedin.com/in/koustuv-mukherjee-b3a082144" style="background-color:mediumblue">
+                <i class="fa fa fa-linkedin" style="font-size:48px;color:white"></i>
+            </a>
+        </div>
+        <span class="caret caret-right" ng-mouseover="hoveringEffect(true)" ng-mouseleave="hoveringEffect(false)"></span>
+    </div>
+<div class="col-sm-9">
+<div class="centered row " style="padding-top:50px">
+    <img ng-src="ccc.png"/><span class="cryp" style="position:relative;top:40px;font-size:17px;font-weight: bold;color:white">Complete Crypto Guide</span>
+</div>
+<div class="centered home row" style="padding-top:10px">
+<form name="getDataForm" ng-submit="getResult(currencyCode)" novalidate>
+    <label style="font-weight:bold;font-size:20px;color:white">Currency Code:</label> <input type="text" class="form-control" ng-model="currencyCode" style="width:450px !important"/>
+<input type="submit"   class="btn btn-primary" ng-click="getResult(currencyCode)" value="Predict"/>
+    <a href="#/logo" style="float:right;color:black;font-weight:bold;padding-right:50px">Coin List</a>
+</form>
+    <validation-directive modal="modalShow"></validation-directive>
+    <!--<div class="modal-show " id="myModal" role="dialog" ng-if="modalShow">-->
+        <!--<div class="modal-dialog">-->
+
+            <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+            <!--<div class="modal-content">-->
+                <!--<div class="modal-header">-->
+                    <!--<button type="button" class="close" ng-click="modalToogle()">&times;</button>-->
+                    <!--<h4 class="modal-title">Please Enter valid coin name</h4>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+</div>
+</div>
+    <div class="col-sm-1 icon-div2">
+        <div id="btnDiv2" class="btn-group-vertical">
+            <a class="anc2" href="https://plus.google.com/106938225417406677407" style="background-color: red">
+                <i class="fa fa-google-plus" style="font-size:24px;width:40px;color:white"></i>
+            </a>
+            <a  class=" anc2" href="https://www.instagram.com/cloohawk" style="background-color:skyblue">
+                <i class="fa fa-instagram" style="font-size:24px;color:white"></i>
+            </a>
+            <a  class="anc2" href="/" style="background-color:green">
+                <i class="fa fa-whatsapp" style="font-size:24px;color:white"></i>
+            </a>
+        </div>
+    </div>
+</div>
+</div>
