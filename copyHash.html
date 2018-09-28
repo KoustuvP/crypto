@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width=800" height="600" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+	 var  index=0;
+     var intervalTime=0;
+     var inter=20;
+     var isSideBar=false;
+      var nodeCirclesIndex=0;
+       var paths=[];
+       var pathIndex=0;
+     var bubbleInterval=0;
+     var setFrame=false;
+	var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+	 var columns=[{'x1':50,'y1':50,'x2':50,'y2':400,'dy':50,'count':0},
+                 {'x1':120,'y1':50,'x2':120,'y2':400,'dy':50,'completed':false,'count':0},
+                 {'x1':190,'y1':50,'x2':190,'y2':400,'dy':50,'completed':false,'count':0},
+                 {'x1':260,'y1':50,'x2':260,'y2':400,'dy':50,'completed':false,'count':0},
+                 {'x1':20,'y1':400,'x2':293,'y2':400,'dy':20,'completed':false,'count':0}];
+     var circles=[{'id':1,'x':50,'y':400,'rad':13,'completed':false,'bubbling':0},
+                  {'id':2,'x':120,'y':400,'rad':13,'completed':false,'bubbling':0},
+                  {'id':3,'x':190,'y':400,'rad':13,'completed':false,'bubbling':0},
+                  {'id':4,'x':260,'y':400,'rad':13,'completed':false,'bubbling':0}];
+      var nodeCircles=[{'id':5,'x':260,'y':330,'rad':13,'reciever':2,'pathDone':false,'completed':false,'color':'pink'},
+                       {'id':6,'x':120,'y':355,'rad':13,'reciever':3,'pathDone':false,'completed':false,'color':'violet'},
+                       {'id':7,'x':50,'y':315,'rad':13,'reciever':6,'pathDone':false,'completed':false,'color':'skyblue'},
+                       {'id':8,'x':120,'y':250,'rad':13,'reciever':5,'pathDone':false,'completed':false,'color':'lightgreen'},
+                       {'id':9,'x':50,'y':210,'rad':13,'reciever':8,'pathDone':false,'completed':false,'color':'levante'},
+                       {'id':10,'x':190,'y':110,'rad':13,'reciever':11,'pathDone':false,'completed':false,'color':'hotpink'},
+                       {'id':11,'x':260,'y':145,'rad':13,'reciever':null,'pathDone':false,'completed':false,'color':'brown'},
+                       {'id':12,'x':120,'y':180,'rad':13,'reciever':9,'pathDone':false,'completed':false,'color':'red'}];
+      
+       var getDirection=function(start,end){
+            if(start<end)
+            	return -1;
+            else return 1
+       }
+       var findReciever=function(node){
+       	 var newNode={};
+       	if(node.reciever<circles.length){
+       		 newNode=circles[node.reciever-1];
+       	}
+       	 
+       	 if(node.reciever>circles.length){
+       	 	 newNode=nodeCircles[node.reciever-5];
+       	 }
+       	 return newNode;
+       }
+       nodeCircles.forEach(function(node){
+       	 var endNode=findReciever(node);
+       	 if(node.reciever){
+       	 	//var changeParam=2;
+
+       	 	paths.push({'x2':node.x,'y2':node.y,'x1':endNode.x,'y1':endNode.y,'dx':endNode.x,'dy':endNode.y});
+
+       	 }
+       	 	
+       });
+       	console.log(paths);
+   
+     var drawNodeBubbles=function(circle,parentColumn,color){
+                ctx.beginPath();
+    	          ctx.arc(circle.x,circle.y,circle.rad,0,2*Math.PI);
+    	          ctx.fillStyle =color ;
+    	          ctx.fillStyle =color ;
+                  ctx.fill();
+                  ctx.strokeStyle=color;
+                  ctx.stroke();
+                  ctx.closePath();
+                  if(parentColumn){
+                  	parentColumn.count+=1;
+
+                  }
+                  circle.completed=true;
+
+                   
+                
+     }
+     var drawLine=function(x1,y1,x2,y2,color){
+               ctx.beginPath();
+               ctx.moveTo(x1,y1);
+               ctx.lineTo(x2,y2);     
+               if(color)
+               ctx.strokeStyle=color; 
+               else ctx.strokeStyle="black"                //to create lines
+               ctx.stroke();
+               ctx.closePath();
+     }
+     var bubbleRecoloring=function(arr,col){
+         arr.forEach(function(bub){
+         	if(!col){
+         		newCol=bub.color;
+         	}
+         	else
+         		newCol=col;
+         	drawNodeBubbles(bub,0,newCol);
+
+         })
+     }
+     
+     var createLinePathAndNode=function(){
+     	var reciever=findReciever(nodeCircles[nodeCirclesIndex]);
+     	//if(reciever.hasOwnProperty("reciever"))
+     	
+     	if(nodeCircles[nodeCirclesIndex].completed&&reciever.completed&&!nodeCircles[nodeCirclesIndex].pathDone){
+     		bubbleInterval=0;
+     		line=paths[pathIndex];
+
+            ctx.beginPath();
+     	    if(line.dx!=line.x2&&line.dy!=line.y2){
+     		    if(line.dx!=line.x2){
+     		    	// var intensity=1;
+     		    	// if(nodeCircles[nodeCirclesIndex]==8)
+     		    	// 	intensity=10;
+     		    	// else
+     		    	// 	intensity=1;
+     		    	var changeX=getDirection(line.x1,line.x2);
+     		    	var changeY=getDirection(line.y1,line.y2);
+                 drawNodeBubbles(nodeCircles[nodeCirclesIndex],0,nodeCircles[nodeCirclesIndex].color);
+     	            drawLine(line.x1,line.y1,line.dx,line.dy,"black");
+     	           
+     	            line.dx=line.dx-0.5*changeX;
+     	            line.dy=line.dy-0.25*changeY;
+     	}
+     	}
+
+     	if(line.dx==line.x2){
+     	
+     		nodeCirclesIndex++;
+     		if(!nodeCircles[nodeCirclesIndex].reciever)
+     			nodeCirclesIndex++;
+     		drawNodeBubbles(nodeCircles[nodeCirclesIndex],0,nodeCircles[nodeCirclesIndex].color);
+     		if(nodeCirclesIndex<nodeCircles.length&&!nodeCircles[nodeCirclesIndex].pathDone){    			                  
+     		if(nodeCircles[nodeCirclesIndex].completed){
+     			console.log(nodeCirclesIndex);
+     			
+     			pathIndex++;
+     			bubbleInterval=2000;
+     		}
+     			
+     			
+     		}
+     		  //clearInterval(moving);
+     		}
+        ctx.closePath();
+     	}
+     	else
+     		drawNodeBubbles(reciever);
+     	if(nodeCirclesIndex==nodeCircles.length-1){
+     		setFrame=true;
+     	}
+     	if(setFrame){
+             bubbleRecoloring(circles,"orangered");
+             bubbleRecoloring(nodeCircles);
+     	}
+     	
+     		
+     }
+     var sideBar=function(){
+     	column=columns[4];
+     	    ctx.beginPath();
+     	    if(column.dy!=column.x2){
+     	    drawLine(column.x1,column.y1,column.dy,column.y2);
+     	    column.dy+=3;
+     	}
+     	if(column.dy==column.x2){
+     		drawLine(column.x1,column.y1,column.x2,column.y2);
+     		isSideBar=true;
+     		clearInterval(mainFrame);
+     		var moving=setInterval(createLinePathAndNode,bubbleInterval);
+     	}
+     	ctx.closePath();
+     }
+     var drawColumn=function(column){
+     	     var circle=circles[index];
+               //ctx.beginPath();
+               if(column.dy!=column.y2){
+               	drawLine(column.x1,column.y1,column.x1,column.dy);
+               // ctx.moveTo(column.x1,column.y1);
+               // ctx.lineTo(column.x1,column.dy);
+               // ctx.stroke();
+               column.dy+=10;
+
+           }
+             if(column.dy==column.y2&&column.count<=12){
+                      inter=6000;
+
+       	           // ctx.clearRect(column.x1-10,column.x2-10,20,20);
+                   if(circle.bubbling%2==0){
+                    circle.rad=13;
+                    drawNodeBubbles(circle,column,"orangered");
+                     circle.bubbling=circle.bubbling+1;
+                   }
+                   else{
+                    ctx.clearRect(circle.x-14,circle.y-14,circle.rad*2+5,circle.rad*2+5);
+                    circle.rad=6;
+                    drawNodeBubbles(circle,column,"orangered");
+                    circle.bubbling=circle.bubbling+1;
+                   }
+                   
+       }
+       if(column.dy==column.y2&&column.count!=2&&circle.bubbling==13){
+            index+=1;
+            inter=0;
+       }
+    
+     }
+
+     var mainFrame=setInterval(function(){
+     	if(index!=4)
+     		drawColumn(columns[index]);
+     	if(index==4){
+     		intervalTime=5;
+     	     sideBar();
+     	     if(isSideBar){
+     	     	//sideBar();
+     	     	drawNodeBubbles(nodeCircles[0],0,nodeCircles[0].color);
+     	     	nodeCircles[0].completed=true;
+
+     	     	
+     	     	//clearInterval(time);
+     	     	
+
+     	     }
+     		// ctx.moveTo(columns[4].x1,columns[4].y2);
+       //         ctx.lineTo(columns[4].x2,columns[4].y2);
+       //         ctx.stroke();
+           
+     	}
+     	
+     },inter)
+
+</script>
+</body>
+</html>
