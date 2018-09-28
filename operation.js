@@ -24,7 +24,7 @@ app.config(['$routeProvider',function($routeProvider){
             templateUrl:"info.html"
         }).
     when("/login",{
-        templateUrl:"login.html"
+        templateUrl:"copyHash.html"
     }).
         otherwise({redirectTo:"/"})
 }]);
